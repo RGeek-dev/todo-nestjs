@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { UpdateTodoDto } from './dto/update-todo.dto';
 
@@ -9,7 +9,7 @@ export class TodosService {
   findOne(id: string) {
     const todo = this.todos.find((todo) => todo.id === id);
     if (!todo) {
-      throw new Error(`Todo with id ${id} not found`);
+      throw new NotFoundException(`Todo with id ${id} not found`);
     }
     return todo;
   }
